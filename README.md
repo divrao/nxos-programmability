@@ -45,18 +45,6 @@ NETCONF Event Notifications can be used to subscribe to system events on a switc
 The script netconf-notifications-bgp.py is used to get NETCONF event notifications for the total number of BGP prefixes in the system. The script first connects to a switch using NETCONF. We then specify an xpath within the create-subscription method. The YANG model being subscribed to could either use the device YANG or OpenConfig data model. When the switch has a system event within this model tree, a NETCONF event notification is generated. We then wait for a notification and display it. The example uses the xpath below, to subscribe to notifications in the total number of BGP prefixes:
 xpath = "/network-instances/network-instance/protocols/protocol/bgp/global/state/total-prefixes"
 
-The script netconf-notifications-bgp.py shows a create-subscription down to the leaf level for BGP total prefixes.
-
-We can optionally also subscribe to a container or list and get notifications which include all of its children. The example below is used to create a subscription to the interfaces container.
-
-<create-subscription xmlns="urn:ietf:params:xml:ns:netconf:notification:1.0">
-    <stream>NETCONF</stream>
-    <filter xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" type="subtree">
-      <interfaces xmlns="http://openconfig.net/yang/interfaces">
-      </interfaces>
-    </filter>
-</create-subscription>
-
 More information on this feature can be found in the article below:
 
 Telemetry in Action: NETCONF and gNMI with a Custom-Built Collector!
